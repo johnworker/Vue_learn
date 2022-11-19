@@ -14,7 +14,7 @@
     <!-- 準備好一個容器 -->
     <div id="root">
         <h2>歡迎來到{{name}}學習</h2>
-        <input type="text" placeholder="按下回車提示輸入">
+        <input type="text" placeholder="按下回車提示輸入" @keyup="showInfo">
     </div>
 </body>
 
@@ -25,7 +25,10 @@
         el:'#root',
         data:{
             name:'尚硅谷'
-        }
+        },
+        methods: {
+            showInfo
+        },
     })
 
 </script>
