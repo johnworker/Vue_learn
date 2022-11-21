@@ -9,17 +9,37 @@
 </head>
 <body>
     <!-- 
-        Vue中的事件修飾符:
+        1.Vue中常用的按鍵別名:
+            回車=> enter
+            刪除=> delete (捕獲"刪除"和"退格"鍵)
+            退出=> esc
+            空格=> space
+            換行=> tab (特殊，必須配合keydown去使用)
+            上=> up
+            下=> down
+            左=> left
+            右=> right
+
+        2.未提供別名的按鍵，可以使用按鍵原始的key值去綁定，但注意要轉為kebab-case (短橫線命名)
+
+        3.系統修飾鍵 (用法特殊)： ctrl、alt、shift、meta
+              (1).配合key使用: 按下修飾鍵同時，再按下其他鍵，事件才被觸發。
+              (2).配合key使用: 正常觸發事件。
+        
+        4.也可以去使用keyCode去指定具體的按鍵 (不推薦)
+
+        5.Vue.config.keyCodes.自定義鍵名 = 鍵碼， 可以去定制按鍵別名
      -->
     <!-- 準備好一個容器 -->
     <div id="root">
         <h2>歡迎來到{{name}}學習</h2>
-        <input type="text" placeholder="按下回車提示輸入" @keyup="showInfo">
+        <input type="text" placeholder="按下回車提示輸入" @keydown.ctrl.y="showInfo">
     </div>
 </body>
 
 <script>
     Vue.config.productionTip = false //阻止 vue 在啟動時生成生產提示。
+    Vue.config.keyCodes.huiche = 13
 
     new Vue({
         el:'#root',
@@ -27,7 +47,11 @@
             name:'尚硅谷'
         },
         methods: {
-            showInfo
+            showInfo(e){
+                // if(e.KeyCode !== 13) return
+                // console.log(e.key,e.keyCode)
+                console.log(e.target.value)
+            }
         },
     })
 

@@ -52,6 +52,8 @@
         <!-- 阻止事件冒泡 (常用) -->
         <div class="demo1" @click="showInfo">
             <button @click.stop="showInfo">點我提示信息</button>
+            <!-- 修飾符可以連續寫 -->
+            <!-- <a href="http://www.atguigu.com" @click.stop.prevent="showInfo">點我提示信息</button> -->
         </div>
         <!-- 事件只觸發一次 (常用) -->
         <button @click.once="showInfo">點我提示信息</button>
