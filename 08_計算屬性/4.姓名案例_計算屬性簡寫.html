@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2.姓名案例_methods實現</title>
+    <title>4.姓名案例_計算屬性簡寫</title>
     <script type="text/javascript" src="../js/vue.js"></script>
 </head>
 
@@ -22,6 +22,7 @@
                 1.計算屬性最終會出現在vm上，直接讀取使用即可。
                 2.如果計算屬性要被修改，那必須寫set函數去影響修改，且set要引起計算時依賴的數據發生
      -->
+    <!-- 只考慮讀取，不考慮修改才可以用簡寫 -->
     <!-- 準備好一個容器 -->
     <div id="root">
         姓: <input type="text" v-model="firstName"><br><br>

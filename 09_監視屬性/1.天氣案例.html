@@ -9,7 +9,10 @@
 </head>
 <body>
     <!-- 準備好一個容器 -->
-    <div id="root"></div>
+    <div id="root">
+        <h2>今天天氣很{{info}}</h2>
+        <button @click=""changeWeather>切換天氣</button>
+    </div>
 </body>
 
 <script>
@@ -18,8 +21,16 @@
     new Vue({
         el:'#root',
         data:{
-
-        }
+            isHot:true
+        },
+        computed:{
+            info(){
+                return this.isHot ? '炎熱' : '涼爽'
+            }
+        },
+        methods: {
+            
+        },
     })
 
 </script>
