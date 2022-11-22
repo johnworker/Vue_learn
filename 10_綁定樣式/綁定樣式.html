@@ -59,9 +59,12 @@
         <div class="basic" :class="classArr">{{name}}</div><br><br>
 
         <!-- 綁定class樣式--對象寫法， 適用於: 要綁定的樣式個數確定，名字也確定，但要動態決定用不用 -->
-        <div class="basic" :class="classObj">{{name}}</div>
+        <div class="basic" :class="classObj">{{name}}</div><br><br>
 
-        <div class="basic">{{name}}</div>
+        <!-- <div class="basic" :style="{fontSize: fsize+'px'}">{{name}}</div> -->
+        
+        <div class="basic" :style="styleObj">{{name}}</div><br><br>
+        <div class="basic" :style="[styleObj,styleObj2]">{{name}}</div>
     </div>
 </body>
 
@@ -78,7 +81,13 @@
                 atguigu1:false,
                 atguigu2:false,
             },
-            fsize:40
+            styleObj:{
+                fontSize: '40px',
+                color: 'blue',
+            },
+            styleObj2:{
+                backgroundColor:'gray'
+            }
         },
         methods: {
             changeMood(){

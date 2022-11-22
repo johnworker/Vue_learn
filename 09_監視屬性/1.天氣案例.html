@@ -11,17 +11,20 @@
     <!-- 準備好一個容器 -->
     <div id="root">
         <h2>今天天氣很{{info}}</h2>
-        <button @click=""changeWeather>切換天氣</button>
+        <!-- 綁定事件的時候: @xxx="yyy" yyy可以寫一些簡單的語句 -->
+        <!-- <button @click="isHot = !isHot">切換天氣</button> -->
+        <!-- 推薦寫法為事件分開寫 -->
+        <button @click="changeWeather">切換天氣</button>
     </div>
 </body>
 
 <script>
-    Vue.config.productionTip = false //阻止 vue 在啟動時生成生產提示。
+    Vue.config.productionTip = false; //阻止 vue 在啟動時生成生產提示。
 
-    new Vue({
+    const vm = new Vue({
         el:'#root',
         data:{
-            isHot:true
+            isHot:true,
         },
         computed:{
             info(){
@@ -29,7 +32,9 @@
             }
         },
         methods: {
-            
+            changeWeather(){
+                this.isHot = !this.isHot
+            }
         },
     })
 

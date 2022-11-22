@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.天氣案例_深度監視</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 
+        深度監視:
+            (1).Vue中的watch默認部監測對象內部值的改變(一層)。
+            (2).配置deep:true可以監測對象內部值的改變(多層)。
+        備註:
+            (1).Vue自身可以監測對象內部值的改變，但Vue提供的watch默認不可以！
+            (2).使用watch時根據數據的具體結構，決定是否採用深度監視。
+            (3).watch默認步開啟深度監視是因為效率
+     -->
+    <!-- 準備好一個容器 -->
+    <div id="root">
+        <!-- 推薦寫法為事件分開寫 -->
+        <h2>今天天氣很{{info}}</h2>
+        <button @click="changeWeather">切換天氣</button>
+        <hr>
+        <h3>a的值是:{{numbers.a}}</h3>
+        <button @click="numbers.a++">點我讓a+1</button>
+        <h3>b的值是:{{numbers.b}}</h3>
+        <button @click="numbers.b++">點我讓b+1</button>
+        <button @click="numbers = {a:666,b:888}">徹底替換numbers</button>
+        {{numbers.c.d.e}}
+    </div>
+</body>
+
+<script>
+    Vue.config.productionTip = false //阻止 vue 在啟動時生成生產提示。
+
+    const vm = new Vue({
+        el: '#root',
+        data: {
+            isHot: true,
+            numbers:{
+                a:1,
+                b:1,
+                c:{
+                    d:{
+                        e:100
+                    }
+                }
+            }
+        },
+        computed: {
+            info() {
+                return this.isHot ? '炎熱' : '涼爽'
+            }
+        },
+        methods: {
+            changeWeather() {
+                this.isHot = !this.isHot
+            }
+        },
+        
+        // 創建時知道監視對象就用watch
+        watch:{
+            isHot:{
+                // immediate: true,    // 初始化時讓handler調用一下
+                // hander什麼時候調用?當isHot發生改變時
+                handler(newValue,oldValue){
+                    console.log('info被修改了',newValue,oldValue)
+                }
+            },
+            // 監視多級結構中某個屬性的變化
+            /*'number.a':{
+                handler(){
+                    console.log('a被改變了')
+                }
+            },*/
+            // 監視多級結構中所有屬性的變化
+            numbers:{
+                deep:true,
+                handler(){
+                    console.log('numbers改變了')
+                }
+            }
+        }
+    })
+
+</script>
+
+</html>
