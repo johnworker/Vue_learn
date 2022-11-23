@@ -1,55 +1,68 @@
 <!DOCTYPE html>
 <html lang="zh">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>綁定樣式</title>
     <style>
-        .basic{
+        .basic {
             width: 400px;
             height: 100px;
             border: 1px solid #000;
         }
 
-        .happy{
+        .happy {
             width: 400px;
             height: 100px;
             border: 1px solid rgb(255, 145, 0);
-            background:radial-gradient(circle farthest-corner at left,yellow,pink,yellow);
+            background: radial-gradient(circle farthest-corner at left, yellow, pink, yellow);
         }
 
-        .sad{
+        .sad {
             width: 400px;
             height: 100px;
             border: 1px solid green;
             background: gray;
         }
 
-        .normal{            
+        .normal {
             width: 400px;
             height: 100px;
             border: 1px solid #000;
             background: rgb(70, 187, 255);
-}
+        }
 
-        .atguigu1{
+        .atguigu1 {
             background: rgb(255, 200, 255);
         }
 
-        .atguigu2{
+        .atguigu2 {
             font-size: 40px;
             font-weight: bold;
         }
 
-        .atguigu3{
+        .atguigu3 {
             border-radius: 30px;
         }
-
     </style>
     <script type="text/javascript" src="../js/vue.js"></script>
 </head>
+
 <body>
+    <!-- 
+        綁定樣式:
+            1. class樣式
+                    寫法:class="xxx" xxx可以是字符串、對象、數組。
+                        字符串寫法適用於: 類名不確定，要動態獲取。
+                        對象寫法適用於: 要綁定多個樣式，個數不確定，名字也不確定。
+                        數組寫法適用於: 要綁定多個樣式，個數確定，名字也確定，但不確定用不用。
+            2. style樣式
+                    :style="{fontSize: xxx}"其中xxx是動態值。
+                    :style="[a,b]"其中a、b是樣式對象。
+
+     -->
     <!-- 準備好一個容器 -->
     <div id="root">
         <!-- 綁定class樣式--字符串寫法， 適用於: 樣式的類名不確定，需要動態指定 -->
@@ -61,10 +74,13 @@
         <!-- 綁定class樣式--對象寫法， 適用於: 要綁定的樣式個數確定，名字也確定，但要動態決定用不用 -->
         <div class="basic" :class="classObj">{{name}}</div><br><br>
 
+                
         <!-- <div class="basic" :style="{fontSize: fsize+'px'}">{{name}}</div> -->
-        
+
+        <!-- 綁定style樣式--對象寫法-->
         <div class="basic" :style="styleObj">{{name}}</div><br><br>
-        <div class="basic" :style="[styleObj,styleObj2]">{{name}}</div>
+        <!-- 綁定style樣式--數組寫法-->
+        <div class="basic" :style="styleArr">{{name}}</div>
     </div>
 </body>
 
@@ -72,29 +88,38 @@
     Vue.config.productionTip = false //阻止 vue 在啟動時生成生產提示。
 
     const vm = new Vue({
-        el:'#root',
-        data:{
-            name:'尚硅谷',
-            mood:'normal',
-            classArr:['atguigu1','atguigu2','atguigu3'],
-            classObj:{
-                atguigu1:false,
-                atguigu2:false,
+        el: '#root',
+        data: {
+            name: '尚硅谷',
+            mood: 'normal',
+            classArr: ['atguigu1', 'atguigu2', 'atguigu3'],
+            classObj: {
+                atguigu1: false,
+                atguigu2: false,
             },
-            styleObj:{
+            styleObj: {
                 fontSize: '40px',
                 color: 'blue',
             },
-            styleObj2:{
-                backgroundColor:'gray'
-            }
+            styleObj2: {
+                backgroundColor: 'gray'
+            },
+            styleArr: [
+                {
+                    fontSize: '40px',
+                    color: 'blue',
+                },
+                {
+                    backgroundColor: 'gray'
+                }
+            ]
         },
         methods: {
-            changeMood(){
+            changeMood() {
                 // 把三種心情樣式用陣列去排
-                const arr = ['happy','sad','normal']
+                const arr = ['happy', 'sad', 'normal']
                 // 函式設定隨機概率
-                const index = Math.floor(Math.random()*3)
+                const index = Math.floor(Math.random() * 3)
                 // 心情變化就是陣列中的3個隨機概率
                 this.mood = arr[index]
             }
@@ -102,4 +127,5 @@
     })
 
 </script>
+
 </html>
