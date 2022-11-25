@@ -8,6 +8,19 @@
     <script type="text/javascript" src="../js/vue.js"></script>
 </head>
 <body>
+    <!-- 
+        面試題: react、vue中的key有什麼作用? (key的內部原理)
+
+            1.虛擬DOM中key的作用:
+                    key是虛擬DOM對象的標識，當狀態中的數據發生變化時，
+                    Vue會根據【新數據】生成【新的虛擬DOM】，
+                    隨後Vue進行【新虛擬DOM】與【舊虛擬DOM】的差異比較，比較規則如下:
+            
+            2.對比規則:
+                (1).舊虛擬DOM中找到了與新虛擬DOM相同的key:
+                    1.若虛擬DOM中內容沒變，直接使用之前的真實DOM！
+                    2.若虛擬DOM中內容變了，
+     -->
     <!-- 準備好一個容器 -->
     <div id="root">
         <!-- 遍厲數組 -->
