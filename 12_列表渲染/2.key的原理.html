@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>綁定樣式</title>
+    <title>2.key的原理</title>
     <script type="text/javascript" src="../js/vue.js"></script>
 </head>
 <body>
@@ -12,27 +12,14 @@
     <div id="root">
         <!-- 遍厲數組 -->
         <h2>人員列表</h2>
+        <button @click.once="add">添加一個老劉</button>
         <ul>
-            <li v-for="(p,index) in persons" :key="index">
+            <li v-for="(p,index) of persons" :key="p.id">
                 {{p.name}}-{{p.age}}
+                <input type="text">
             </li>
         </ul>
 
-        <!-- 遍厲對象 -->
-        <h2>汽車信息</h2>
-        <ul>
-            <li v-for="(value,k) in car" :key="k">
-                {{k}}-{{value}}
-            </li>
-        </ul>
-
-        <!-- 遍厲字符串 -->
-        <h2>測試遍厲字符串</h2>
-        <ul>
-            <li v-for="(char,index) in str" :key="index">
-                {{char}}-{{index}}
-            </li>
-        </ul>        
     </div>
 </body>
 
@@ -46,14 +33,15 @@
                 {id:'001',name:'張三',age:18},
                 {id:'002',name:'李四',age:19},
                 {id:'003',name:'王五',age:20}
-            ],
-            car:{
-                name:'奧迪A8',
-                price:'70萬',
-                color:'黑色'
-            },
-            str:'hello'
-        }
+            ]
+        },
+        methods: {
+            add(){
+                const p = {id:'004',name:'老劉',age:40}
+                // unshift 往前放
+                this.persons.unshift(p)
+            }
+        },
     })
 
 </script>
