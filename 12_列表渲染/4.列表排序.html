@@ -15,9 +15,9 @@
         <!-- 遍厲數組 -->
         <h2>人員列表</h2>
         <input type="text" placeholder="請輸入名字" v-model="keyWord">
-        <button>年齡升序</button>
-        <button>年齡降序</button>
-        <button>原順序</button>
+        <button @click="sortType = 2">年齡升序</button>
+        <button @click="sortType = 1">年齡降序</button>
+        <button @click="sortType = 0">原順序</button>
         <ul>
             <li v-for="(p,index) in filPerons" :key="index">
                 {{p.name}}-{{p.age}}-{{p.sex}}
@@ -30,42 +30,12 @@
 <script>
     Vue.config.productionTip = false //阻止 vue 在啟動時生成生產提示。
 
-    // 用watch實現
-    //#region 
-    /*new Vue({
-        el: '#root',
-        data: {
-            // keyWord: ''  (雙向綁定空字符串)
-            keyWord: '',
-            persons: [
-                { id: '001', name: '馬冬梅', age: 19, sex: '女' },
-                { id: '002', name: '周冬雨', age: 20, sex: '女' },
-                { id: '003', name: '周杰倫', age: 21, sex: '男' },
-                { id: '004', name: '溫兆倫', age: 22, sex: '男' }
-            ],
-            // 篩選列表
-            filPerons: []
-        },
-        watch: {
-            keyWord: {
-                // immediate:true 開啟可以即時呈現
-                immediate:true,
-                handler(val) {
-                    this.filPerons = this.persons.filter((p) => {
-                        return p.name.indexOf(val) !== -1
-                    })
-                }
-            }
-        }
-    })*/
-    //#endregion
-
-    // 用computed實現
     new Vue({
         el: '#root',
         data: {
             // keyWord: ''  (雙向綁定空字符串)
             keyWord: '',
+            sortType:0, //0原順序 1降序 2升序
             persons:[
                 { id: '001', name: '馬冬梅', age: 19, sex: '女' },
                 { id: '002', name: '周冬雨', age: 20, sex: '女' },
@@ -75,9 +45,16 @@
         },
         computed:{
             filPerons(){
-                return this.persons.filter((p) => {
+                const arr = this.persons.filter((p) => {
                     return p.name.indexOf(this.keyWord) !== -1
                 })
+                // 判斷一下是否需要排序
+                if(this.sortType){
+                    arr.sort((p1,p2)=>{
+                        return this.sortType === 1 ? p2.age-p1.age : p1.age-p2.age
+                    })
+                }
+                return arr
             }
         }
     })
