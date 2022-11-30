@@ -14,6 +14,9 @@
     <div id="root">
         <h2>學校名稱: {{name}}</h2>
         <h2>學校地址: {{address}}</h2>
+        <hr>
+        <h2>學生姓名: {{student.name}}</h2>
+        <h2>學生年齡: 真實{{student.age.rAge}}, 對外{{student.age.sAge}}</h2>
     </div>
 </body>
 
@@ -24,7 +27,18 @@
         el:'#root',
         data:{
             name:'尚硅谷',
-            address:'新竹'
+            address:'新竹',
+            student:{
+                name:'tom',
+                age: {
+                    rAge:40,
+                    sAge:29
+                },
+                friend:[
+                    {name:'jerry',age:35},
+                    {name:'jerry',age:36}
+                ]
+            }
         }
     })
 

@@ -11,13 +11,36 @@
 
         let data = {
             name:'尚硅谷',
-            address:'新竹'
+            address:'新竹',
+            student:{
+                name:'tom'
+            }
         }
 
         // 創建一個監視的實例對象，用於監視data中屬性的變化
         const obs = new observer(data)
+        console.log(obs)
 
-        function observer(obj){}
+        // 準備一個vm實例對象
+        let vm = {}
+        vm._data = data = obs
+
+        function observer(obj){
+            // 匯總對象中所有的屬性形成一個數組
+            const keys = Object.keys(obj)
+            // 遍厲
+            keys.forEach((k)=>{
+                Object.defineProperty(this,k,{
+                    get(){
+                        return obj[k]
+                    },
+                    set(val){
+                        console.log(`${k}被改了，我要去解析模板，生成虛擬DOM...我要開始忙了`)
+                        obj[k] = val
+                    }
+                })
+            })
+        }
 
 
         // 寫法無限循環造成無法輸出

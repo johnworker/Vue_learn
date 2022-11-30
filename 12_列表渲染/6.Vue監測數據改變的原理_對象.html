@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>綁定樣式</title>
+    <style>
+    </style>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- 準備好一個容器 -->
+    <div id="root">
+        <h2>學校名稱: {{name}}</h2>
+        <h2>學校地址: {{address}}</h2>
+    </div>
+</body>
+
+<script>
+    Vue.config.productionTip = false //阻止 vue 在啟動時生成生產提示。
+
+    const vm = new Vue({
+        el:'#root',
+        data:{
+            name:'尚硅谷',
+            address:'新竹',
+            student:{
+                name:'tom',
+                age: {
+                    rAge:40,
+                    sAge:29
+                },
+                friend:[
+                    {name:'jerry',age:35}
+                ]
+            }
+        }
+    })
+
+</script>
+</html>
