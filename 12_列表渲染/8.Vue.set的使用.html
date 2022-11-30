@@ -12,14 +12,20 @@
 <body>
     <!-- 準備好一個容器 -->
     <div id="root">
+        <h1>學校信息</h1>
         <h2>學校名稱: {{name}}</h2>
         <h2>學校地址: {{address}}</h2>
         <hr>
-        <h2>學生姓名: {{student.name}}</h2>
-        <h2>學生年齡: 真實{{student.age.rAge}}, 對外{{student.age.sAge}}</h2>
+        <h1>學生信息</h1>
+        <button @click="addSex">添加一個性別屬性，默認值是男</button>
+        <h2>姓名: {{student.name}}</h2>
+        <h2>性別: {{student.sex}}</h2>
+        <h2>年齡: 真實{{student.age.rAge}}, 對外{{student.age.sAge}}</h2>
         <h2>朋友們</h2>
         <ul>
-            <li v-for="f in student.friends" :key="index"></li>
+            <li v-for="(f,index) in student.friends" :key="index">
+                {{f.name}}--{{f.age}}
+            </li>
         </ul>
     </div>
 </body>
@@ -34,13 +40,14 @@
             address:'新竹',
             student:{
                 name:'tom',
+                sex: '男',
                 age: {
                     rAge:40,
                     sAge:29
                 },
                 friends:[
                     {name:'jerry',age:35},
-                    {name:'jerry',age:36}
+                    {name:'tony',age:36}
                 ]
             }
         }
