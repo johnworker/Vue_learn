@@ -17,6 +17,10 @@
         <hr>
         <h2>學生姓名: {{student.name}}</h2>
         <h2>學生年齡: 真實{{student.age.rAge}}, 對外{{student.age.sAge}}</h2>
+        <h2>朋友們</h2>
+        <ul>
+            <li v-for="f in student.friends" :key="index"></li>
+        </ul>
     </div>
 </body>
 
@@ -34,7 +38,7 @@
                     rAge:40,
                     sAge:29
                 },
-                friend:[
+                friends:[
                     {name:'jerry',age:35},
                     {name:'jerry',age:36}
                 ]
