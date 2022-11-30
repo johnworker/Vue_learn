@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+
+        let data = {
+            name:'尚硅谷',
+            address:'新竹'
+        }
+
+        // 創建一個監視的實例對象，用於監視data中屬性的變化
+        const obs = new observer(data)
+
+        function observer(obj){}
+
+
+        // 寫法無限循環造成無法輸出
+
+        // Object.defineProperty(data,'name',{
+        //     get(){
+        //         return data.name
+        //     },
+        //     set(val){
+        //         data.name = val
+        //     }
+        // })
+
+    </script>
+</body>
+</html>

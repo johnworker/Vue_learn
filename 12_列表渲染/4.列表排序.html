@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3.列表過濾</title>
+    <title>4.列表排序</title>
     <script type="text/javascript" src="../js/vue.js"></script>
 </head>
 
@@ -19,8 +19,9 @@
         <button @click="sortType = 1">年齡降序</button>
         <button @click="sortType = 0">原順序</button>
         <ul>
-            <li v-for="(p,index) in filPerons" :key="index">
+            <li v-for="(p,index) in filPerons" :key="p.id">
                 {{p.name}}-{{p.age}}-{{p.sex}}
+                <input type="text">
             </li>
         </ul>
 
@@ -37,14 +38,15 @@
             keyWord: '',
             sortType:0, //0原順序 1降序 2升序
             persons:[
-                { id: '001', name: '馬冬梅', age: 19, sex: '女' },
-                { id: '002', name: '周冬雨', age: 20, sex: '女' },
+                { id: '001', name: '馬冬梅', age: 30, sex: '女' },
+                { id: '002', name: '周冬雨', age: 31, sex: '女' },
                 { id: '003', name: '周杰倫', age: 21, sex: '男' },
                 { id: '004', name: '溫兆倫', age: 22, sex: '男' }
             ]
         },
         computed:{
             filPerons(){
+                // 邏輯分析：const arr = this.persons.filter (新的一個列表 = 這個)
                 const arr = this.persons.filter((p) => {
                     return p.name.indexOf(this.keyWord) !== -1
                 })

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.更新時的一個問題</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 準備好一個容器 -->
+    <div id="root">
+        <!-- 遍厲數組 -->
+        <h2>人員列表</h2>
+        <button @click="updateMei">更新馬冬梅的信息</button>
+        <ul>
+            <li v-for="(p,index) in perons" :key="p.id">
+                {{p.name}}-{{p.age}}-{{p.sex}}
+            </li>
+        </ul>
+
+    </div>
+</body>
+
+<script>
+    Vue.config.productionTip = false //阻止 vue 在啟動時生成生產提示。
+
+    const vm = new Vue({
+        el: '#root',
+        data: {
+            persons:[
+                { id: '001', name: '馬冬梅', age: 30, sex: '女' },
+                { id: '002', name: '周冬雨', age: 31, sex: '女' },
+                { id: '003', name: '周杰倫', age: 21, sex: '男' },
+                { id: '004', name: '溫兆倫', age: 22, sex: '男' }
+            ]
+        },
+        methods: {
+            updateMei(){
+                // this.persons[0].name = "馬老師"
+                // this.persons[0].age = 50
+                // this.persons[0].sex = "男"
+                this.persons[0] = {id:'001',name:'馬老師',age:50,sex:'男'}
+            }
+        },
+    })
+</script>
+
+</html>
