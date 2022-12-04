@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>8.Vue.set的使用</title>
+    <title>9Vue監測數據改變的原理_數組</title>
     <style>
     </style>
     <script type="text/javascript" src="../js/vue.js"></script>
@@ -24,12 +24,20 @@
         <h2>姓名: {{student.name}}</h2>
         <h2 v-if="student.sex">性別: {{student.sex}}</h2>
         <h2>年齡: 真實{{student.age.rAge}}, 對外{{student.age.sAge}}</h2>
+        <h2>愛好</h2>
+        <ul>
+            <li v-for="(h,index) in student.hobby" :key="index">
+                {{h}}
+            </li>
+        </ul>
+
         <h2>朋友們</h2>
         <ul>
             <li v-for="(f,index) in student.friends" :key="index">
                 {{f.name}}--{{f.age}}
             </li>
         </ul>
+
     </div>
 </body>
 
@@ -49,6 +57,7 @@
                     rAge: 40,
                     sAge: 29
                 },
+                hobby:['兜風','喝酒','唱歌'],
                 friends: [
                     { name: 'jerry', age: 35 },
                     { name: 'tony', age: 36 }
