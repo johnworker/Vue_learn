@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>13_收集表單數據</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 準備好一個容器 -->
+    <div id="root">
+        <!-- form 裡面的 action 屬性 用於指定提交表單的地址-->
+        <!-- 透過元素呈現一個技術ajax發給後端 -->
+        <form @submit.prevent="demo">
+            帳號：<input type="text" v-model="userInfo.account"><br><br>
+            密碼：<input type="password" v-model="userInfo.password"><br><br>
+            年齡：<input type="number" v-model.number="userInfo.age"><br><br>
+            性別：
+            <!-- 用同個name的標籤名控制選單 -->
+            男<input type="radio" name="sex" v-model="userInfo.sex" value="male">
+            女<input type="radio" name="sex" v-model="userInfo.sex" value="female"><br><br>
+            愛好：
+            學習<input type="checkbox" v-model="hobby" value="study">
+            打遊戲<input type="checkbox" v-model="hobby" value="game">
+            吃飯<input type="checkbox" v-model="hobby" value="eat">
+            <br><br>
+            所屬校區
+            <!-- select是下拉選單 -->
+            <select v-model="userInfo.city">
+                <!-- option 安排每個選單選項內容 -->
+                <option value="">請選擇校區</option>
+                <option value="Taipei">台北</option>
+                <option value="Tauyun">桃園</option>
+                <option value="sincue">新竹</option>
+            </select>
+            <br><br>
+            其他信息:
+            <textarea v-model="userInfo.other"></textarea><br><br>
+            <input type="checkbox" v-model="userInfo.agree">閱讀並接受<a href="http://www.atguigu.com">《用戶協議》</a>
+            <button>提交</button>
+        </form>
+    </div>
+</body>
+
+<script>
+    Vue.config.productionTip = false //阻止 vue 在啟動時生成生產提示。
+
+    new Vue({
+        el: '#root',
+        data: {
+            userInfo: {
+                account: '',
+                password: '',
+                age:18,
+                sex: 'female',
+                hobby: [],
+                city: 'Taipei',
+                other: '',
+                agree: ''
+            }
+        },
+        methods: {
+            demo() {
+                console.log(JSON.stringify(this.userInfo))
+            }
+        },
+    })
+
+</script>
+
+</html>

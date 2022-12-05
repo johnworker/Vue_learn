@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <!-- 
+    <!-- 數據劫持
         Vue監視數據的原理:
             1.vue會監視data中所有層次的數據。
 
@@ -45,6 +45,7 @@
         <button @click="updateFirstFriendName">修改第一個朋友的名字為: 張三</button>
         <button @click="addHobby">添加一個愛好</button><br>
         <button @click="updateHobby">修改第一個愛好為: 開車</button><br>
+        <button @click="removeSmoke">過濾掉愛好中的兜風</button>
 
         <h2>姓名: {{student.name}}</h2>
         <h2>年齡: {{student.age}}</h2>
@@ -101,6 +102,11 @@
                 // this.student.hobby.splice(0,1,'開車')
                 // Vue.set(this.student.hobby,0,'開車')
                 this.$set(this.student.hobby,0,'開車')
+            },
+            removeSmoke(){
+                this.student.hobby = this.student.hobby.filter((h)=>{
+                    return h !== '兜風'
+                })
             }
         }
     })
