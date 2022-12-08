@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>綁定樣式</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- 
+        我學過的指令:
+            v-bind  :  單向綁定解析表達式，可簡寫為  :xxx
+            v-model :  雙向數據綁定
+            v-for   :  遍歴數組/對象/字符串
+            v-on    :  綁定事件監聽，可簡寫為@
+            v-if    :  條件渲染 (動態控制節點是否存在)
+            v-else  :  條件渲染 (動態控制節點是否存在)
+            v-show  :  條件渲染 (動態控制節點是否展示)
+     -->
+    <!-- 準備好一個容器 -->
+    <div id="root">
+        <div>test</div>
+    </div>
+</body>
+
+<script>
+    Vue.config.productionTip = false //阻止 vue 在啟動時生成生產提示。
+
+    new Vue({
+        el:'#root',
+        data:{
+
+        }
+    })
+
+</script>
+</html>
