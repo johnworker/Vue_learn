@@ -4,17 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3.v-clock_指令</title>
-    <script type="text/javascript" src="http://localhost:8080/resourse/3s/vue.js"></script>
+    <title>5.v-pre_指令</title>
     <script type="text/javascript" src="../js/vue.js"></script>
 </head>
 <body>
+    <!-- 
+        v-pre指令：
+            1.跳過其他所在節點的編譯過程。
+            2.可利用它跳過: 沒有使用指令語法、沒有使用插值語法的節點，會加快編譯。
+     -->
     <!-- 準備好一個容器 -->
     <div id="root">
-        <h2>{{name}}</h2>
-        <div v-text="name"></div>
-        <div v-text="str"></div>
+        <h2 v-pre>Vue其實很簡單</h2>
+        <h2 v-pre>當前的n值是:{{n}}</h2>
+        <button v-pre a="1" @click="n++">點我n+1</button>
     </div>
+
+    <script type="text/javascript" src="http://localhost:8080/resourse/3s/vue.js"></script>
+
 </body>
 
 <script>
@@ -23,8 +30,7 @@
     new Vue({
         el:'#root',
         data:{
-            name:'尚硅谷',
-            str:'<h3>你好啊!</h3>'
+            n:1
         }
     })
 
