@@ -4,13 +4,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>綁定樣式</title>
+    <title>16_自定義指令</title>
     <script type="text/javascript" src="../js/vue.js"></script>
 </head>
 <body>
+    <!-- 
+        需求1: 定義一個v-big指令，和v-text功能類似，但會把綁定的數值放大10倍。
+        需求2: 定義一個v-fbind指令，和v-bind功能類似，但可以讓其所綁定的input元素默認獲取焦點。
+     -->
     <!-- 準備好一個容器 -->
     <div id="root">
-        <div>test</div>
+        <h2>當前的n值是: <span v-text="n"></span></h2>
+        <h2>放大10倍後的n值是: <span v-big="n"></span></h2>
+        <button @click="n++">點我n+1</button>
     </div>
 </body>
 
@@ -20,8 +26,9 @@
     new Vue({
         el:'#root',
         data:{
-
-        }
+            n:1
+        },
+        directives:{}
     })
 
 </script>
