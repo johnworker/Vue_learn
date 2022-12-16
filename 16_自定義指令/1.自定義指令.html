@@ -16,8 +16,10 @@
     <div id="root">
         <h2>{{name}}</h2>
         <h2>當前的n值是: <span v-text="n"></span></h2>
-        <h2>放大10倍後的n值是: <span v-big="n"></span></h2>
+        <h2>放大10倍後的n值是: <span v-big-number="n"></span></h2>
         <button @click="n++">點我n+1</button>
+        <hr>
+        <input type="text" v-fbind:value="n">
     </div>
 </body>
 
@@ -32,8 +34,24 @@
         },
         directives:{
             // big函數何時被調用? 1.指令和元素成功綁定時(一上來)。2.指令所在的模板被重新解析時
-            big(element,binding){
+            'big-number'(element,binding){
+                console.log('big',this)
                 element.innerText = binding.value * 10
+            },
+            fbind:{
+                // 指令與元素成功綁定時(一上來)
+                bind(element,binding){
+                    element.value = binding.value
+                },
+                // 指令所在元素被插入頁面時
+                inserted(element,binding){
+                    element.focus()
+                },
+                // 指令所在的模板被重新解析時
+                update(element,binding){
+                    element.value = binding.value
+                    element.focus()
+                }
             }
         }
     })
